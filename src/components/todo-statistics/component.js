@@ -5,10 +5,20 @@ import { defaults, Doughnut } from "react-chartjs-2";
 import { Card, List } from "antd";
 import _ from "lodash";
 import Utils from "./utils";
-import { KEYS } from "eslint-visitor-keys";
 
 defaults.global.legend.display = false;
 
+/**
+ * TODO STATISTICS
+ *
+ * This is another dummy component that is only
+ * responsible for displaying charts and graphs
+ * of the necessary statistic needed by the client.
+ *
+ * One of these charts is the total number of hours
+ * accumulated by the `estimate` property of the todo
+ * item.
+ */
 export default class extends PureComponent {
 	render() {
 		const { data } = this.props;

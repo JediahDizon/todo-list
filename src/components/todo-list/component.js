@@ -16,6 +16,15 @@ import { TodoFactory } from "app/services";
  */
 
 export default class extends PureComponent {
+	/**
+	 * TODO LIST
+	 *
+	 * This dummy (non-redux connected) component is only responsible for
+	 * fislpaying a list of Todo items. It calls back a function whenever
+	 * it get its "Edit" button triggered, so no modal is going to be
+	 * found here, instead, it's going to be found by the parent.
+	 */
+
 	render() {
 		const { data, renderEmptyList } = this.props;
 		const sanitizedData = _.compact(data);

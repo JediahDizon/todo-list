@@ -18,4 +18,6 @@ Due to time constraints and the nature of a simple application, some features ar
 - ☐ ESLint - Used to check the programmer's code consistency to ESLint rules
 
 ## Technical Documentation
-Download the video HERE [Create React App]()
+Download the use-case super cut video [HERE](https://github.com/JediahDizon/todo-list/raw/master/doc/media/Use%20Case%20Supercut.mp4) or go to `/docs/media`
+
+OneNote link pending

@@ -7,6 +7,7 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 
 // COMPONENTS
+import "moment-duration-format";
 import { Router } from "app/views";
 import { Reducers } from "app/store";
 
@@ -36,14 +37,7 @@ const RootComponent = (
 	</AppContainer>
 );
 
-initialize();
-
 ReactDOM.render(
 	RootComponent,
 	document.getElementById("root")
 );
-
-function initialize() {
-	// For formatting a Duration object from a Moment JS object
-	require("moment-duration-format");
-}

@@ -1,13 +1,24 @@
 import React, { PureComponent } from "react";
 
 // UTILS
-import { Form, Input, Button, DatePicker, InputNumber, Slider, Divider } from "antd";
-import * as Colors from "@ant-design/colors";
+import { Form, Input, Button, InputNumber, Slider } from "antd";
 import _ from "lodash";
-import Moment from "moment";
 import { TodoFactory } from "app/services";
 
 export default Form.create({ name: "editTodo" })(
+	/**
+	 * TODO EDIT FORM
+	 *
+	 * Another dummy component like the Todo list, this is only
+	 * responsible for letting the user edit/create new todo items.
+	 * This calls back a function when the form is submitted so
+	 * no listeners is found here, instead, its going to be from
+	 * the parent.
+	 *
+	 * This uses the Form framework that AntD gives to allow for a
+	 * scalable and maintainable form inputs alongside error correctoin
+	 * and validdation.
+	 */
 	class extends PureComponent {
 		render() {
 			const { getFieldDecorator, getFieldError } = this.props.form;
@@ -15,24 +26,18 @@ export default Form.create({ name: "editTodo" })(
 			data = data || {};
 
 			// Based on the status, we apply percentage value to the progress bar
-			const statusProgress = {
-				percent: 0,
-				showInfo: false,
-				color: Colors.blue.primary
-			};
+			let statusProgress = 0;
 			switch(data.status) {
 				case TodoFactory.statusTypes.IN_PROGRESS:
-					statusProgress.percent = 50;
+					statusProgress = 50;
 					break;
 
 				case TodoFactory.statusTypes.COMPLETE:
-					statusProgress.percent = 100;
-					statusProgress.showInfo = true;
-					statusProgress.color = Colors.green.primary
+					statusProgress = 100;
 					break;
 
 				default:
-					statusProgress.percent = 0;
+					statusProgress = 0;
 			};
 
 			return (
@@ -60,23 +65,6 @@ export default Form.create({ name: "editTodo" })(
 						)}
 					</Form.Item>
 
-					{
-					// <Form.Item validateStatus={getFieldError("estimate") ? "error" : ""} help={getFieldError("estimate") || ""} style={{ marginBottom: "10px" }}>
-					// 	{getFieldDecorator("estimate", {
-					// 		rules: [{ type: "object", required: true, message: "Please provide an estimate" }],
-					// 		initialValue: data.estimate ? Moment(data.estimate) : null
-					// 	})(
-					// 		<DatePicker
-					// 			showTime
-					// 			format="YYYY-MM-DD HH:mm:ss"
-					// 			placeholder="Estimate..."
-					// 			disabledDate={current => current && current < Moment().endOf("day")}
-					// 			style={{ minWidth: 0 /* For some reason, AntD has their date pickers have minWidth of 195px */ }}
-					// 		/>
-					// 	)}
-					// </Form.Item>
-					}
-
 					<Form.Item validateStatus={getFieldError("estimate") ? "error" : ""} help={getFieldError("estimate") || ""} style={{ marginBottom: "10px" }}>
 						{getFieldDecorator("estimate", {
 							rules: [{ required: true, message: "Please provide an estimate" }],
@@ -89,7 +77,7 @@ export default Form.create({ name: "editTodo" })(
 
 					<Form.Item style={{ margin: "0 20px" }}>
 						{getFieldDecorator("status", {
-							initialValue: statusProgress.percent || 0
+							initialValue: statusProgress || 0
 						})(
 							<Slider
 								dots

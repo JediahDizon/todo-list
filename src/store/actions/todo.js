@@ -10,7 +10,7 @@ import { TodoFactory } from "app/services";
  * Gets the list of Todo items from the TodoFactory
  * service.
  *
- * @return {object} - The list of todos.
+ * @return {object} - The list of todos
  */
 export function getTodoList() {
 	return async dispatch => {
@@ -43,9 +43,12 @@ export function getTodoList() {
 /**
  * SAVE TODO
  *
- * Saves the provided todo item to the TodoFactory service.
+ * Saves the provided todo item to the TodoFactory
+ * service. This would either overwrite the todo item
+ * with the same ID or create a new record if the ID
+ * is not found on the list
  *
- * @return {object} - The list of todos.
+ * @return {object} - The todo to save
  */
 export function saveTodo(toSave) {
 	return async dispatch => {
@@ -100,6 +103,15 @@ export function deleteTodo(todoId) {
 	};
 }
 
+/**
+ * SAVE TODO FAIL TEST
+ *
+ * Used for debugging, this tests how the application
+ * would behave upon a failed async call to save
+ * a todo item.
+ *
+ * @param {error} - The error object to throw
+ */
 export function saveTodoFailTest(toSave) {
 	return async dispatch => {
 		dispatch({

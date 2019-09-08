@@ -8,6 +8,7 @@ import Moment from "moment";
 
 export default class extends Component {
 	state = {
+		// Edit Modal is used whenever the "Edit" button from the list is triggered
 		editModal: {
 			visible: false,
 			data: null,
@@ -35,17 +36,19 @@ export default class extends Component {
 			<Spin spinning={Todo.loading}>
 				<div style={{ width: "100%", margin:"auto", padding: "0 20px", maxWidth: "800px" }}>
 					<Layout style={{ padding: "20px 0", background: "#fff" }}>
-					{
-						isMobile ? (
-							<Layout style={{ background: "#fff", marginBottom: "20px" }} width={275}>
-								{ this.renderCompactDashboard() }
-							</Layout>
-							) : (
-								<Layout.Sider style={{ background: "#fff" }} width={275}>
-									{ this.renderDashboard() }
-								</Layout.Sider>
-							)
-					}
+						{
+							// We render a single column layout if we are on mobile. Otherwise, it's a 2 column layout for desktops
+							isMobile ? (
+								<Layout style={{ background: "#fff", marginBottom: "20px" }} width={275}>
+									{ this.renderCompactDashboard() }
+								</Layout>
+								) : (
+									<Layout.Sider style={{ background: "#fff" }} width={275}>
+										{ this.renderDashboard() }
+									</Layout.Sider>
+								)
+						}
+
 						<Layout.Content style={{ padding: "0 24px", minHeight: 280 }}>
 							<Layout.Content style={{ padding: "0 24px", minHeight: 280 }}>
 								<TodoList
@@ -87,7 +90,7 @@ export default class extends Component {
 		);
 	}
 
-
+	// Compact dashboard for Mobile view
 	renderCompactDashboard() {
 		const { Todo } = this.props;
 		return (
@@ -104,6 +107,7 @@ export default class extends Component {
 		);
 	}
 
+	// Normal dashboard for Desktop view
 	renderDashboard() {
 		const { Todo } = this.props;
 		return (

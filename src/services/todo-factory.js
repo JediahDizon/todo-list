@@ -8,6 +8,7 @@ const statusTypes = {
 	COMPLETE: "Complete"
 };
 
+// As per requirement, we do not need to persist the store to a DB so we just use this in-memory seed as our starting dataset
 const sampleData = [
 	{
 		id: -1,
@@ -38,11 +39,27 @@ const sampleData = [
 export default {
 	statusTypes,
 
+	/**
+	 * GET TODO LIST
+	 *
+	 * Compile all existing Todo items into a list
+	 *
+	 * @return {list} - The list of Todo items that existed prior
+	 */
 	getTodoList: () => {
 		return new Promise(resolve => setTimeout(resolve, _.random(100, 1500)))
 		.then(() => sampleData);
 	},
 
+
+	/**
+	 * SAVE TODO ITEM
+	 *
+	 * Saves a todo item by modifying one of the existing items if the ID
+	 * is not nil. Otherwise, create a new record and assign a new ID.
+	 *
+	 * @return {object} - The todo item that was saved
+	 */
 	saveTodo: toSave => {
 		return new Promise(resolve => setTimeout(resolve, _.random(100, 1500)))
 		.then(() => {
@@ -53,6 +70,15 @@ export default {
 		});
 	},
 
+
+	/**
+	 * DELETE TODO ITEM
+	 *
+	 * Deletes te todo item with the corresponding ID as the
+	 * parameterized value.
+	 *
+	 * @return {string} - The ID of the todo item that was deleted
+	 */
 	deleteTodo: id => {
 		return new Promise(resolve => setTimeout(resolve, _.random(100, 1500)))
 		.then(() => {
@@ -60,6 +86,14 @@ export default {
 		});
 	},
 
+	/**
+	 * SAVE TODO FAIL TEST
+	 *
+	 * Tests how the application behaves upon failure of an async request
+	 * to save a todo item.
+	 *
+	 * @return {error} - The error to be thrown
+	 */
 	saveTodoFailTest: toSave => {
 		return new Promise((resolve, reject) => setTimeout(() => reject(new Error("Save fail test successful")), _.random(100, 1500)));
 	}
