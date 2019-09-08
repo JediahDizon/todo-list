@@ -70,14 +70,14 @@ export default class extends PureComponent {
 								>
 									<List.Item.Meta
 										title={(
-											<h3 style={{ wordWrap: "break-word" }}>
+											<span style={{ fontSize: "1.5em", wordWrap: "break-word" }}>
 												<Icon type={statusProgress.icon} theme="filled" style={{ color: statusProgress.color }} /> { item.name }
-											</h3>
+											</span>
 										)}
 										description={(
 											<div>
 												<p style={{ whiteSpace: "pre-line" }}>{ item.description }</p>
-												<sub>Due { Moment(item.estimate).fromNow() } - { Moment(item.estimate).format("LLL") }</sub>
+												<sub>Estimate: { item.estimate } hours</sub>
 											</div>
 										)}
 									/>

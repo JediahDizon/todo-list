@@ -110,10 +110,7 @@ export default class extends Component {
 			<Menu mode="inline">
 				<div style={{ padding: "0 20px", marginBottom: "20px" }}><TodoEditForm key={_.size(Todo.data)} onSubmit={toSave => this.props.saveTodo(toSave)} /></div>
 				{
-					_.size(Todo.data) > 0 && [
-						<div key="0" style={{ padding: "0 20px" }}><TodoStatistics data={Todo.data} /></div>,
-						<div key="1" style={{ padding: "0 20px", marginBottom: "20px" }}><Divider /></div>
-					]
+					_.size(Todo.data) > 0 && <div key="0" style={{ padding: "0 20px" }}><TodoStatistics data={Todo.data} /></div>
 				}
 			</Menu>
 		);
@@ -129,7 +126,6 @@ export default class extends Component {
 						key={Math.random() /* So a unique form instance generates everytime the modal opens */}
 						data={toEdit}
 						onSubmit={toSave => this.closeEditModal() || this.props.saveTodo({...toEdit, ...toSave})}
-						onFail={toSave => this.closeEditModal() || this.props.saveTodoFailTest({...toEdit, ...toSave})}
 					/>
 				),
 				error: null

@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 
 // UTILS
-import { Form, Input, Button, DatePicker, Slider, Divider } from "antd";
+import { Form, Input, Button, DatePicker, InputNumber, Slider, Divider } from "antd";
 import * as Colors from "@ant-design/colors";
 import _ from "lodash";
 import Moment from "moment";
@@ -60,20 +60,32 @@ export default Form.create({ name: "editTodo" })(
 						)}
 					</Form.Item>
 
+					{
+					// <Form.Item validateStatus={getFieldError("estimate") ? "error" : ""} help={getFieldError("estimate") || ""} style={{ marginBottom: "10px" }}>
+					// 	{getFieldDecorator("estimate", {
+					// 		rules: [{ type: "object", required: true, message: "Please provide an estimate" }],
+					// 		initialValue: data.estimate ? Moment(data.estimate) : null
+					// 	})(
+					// 		<DatePicker
+					// 			showTime
+					// 			format="YYYY-MM-DD HH:mm:ss"
+					// 			placeholder="Estimate..."
+					// 			disabledDate={current => current && current < Moment().endOf("day")}
+					// 			style={{ minWidth: 0 /* For some reason, AntD has their date pickers have minWidth of 195px */ }}
+					// 		/>
+					// 	)}
+					// </Form.Item>
+					}
+
 					<Form.Item validateStatus={getFieldError("estimate") ? "error" : ""} help={getFieldError("estimate") || ""} style={{ marginBottom: "10px" }}>
 						{getFieldDecorator("estimate", {
-							rules: [{ type: "object", required: true, message: "Please provide an estimate" }],
-							initialValue: data.estimate ? Moment(data.estimate) : null
+							rules: [{ required: true, message: "Please provide an estimate" }],
+							initialValue: data.estimate
 						})(
-							<DatePicker
-								showTime
-								format="YYYY-MM-DD HH:mm:ss"
-								placeholder="Estimate..."
-								disabledDate={current => current && current < Moment().endOf("day")}
-								style={{ minWidth: 0 /* For some reason, AntD has their date pickers have minWidth of 195px */ }}
-							/>
+							<InputNumber min={0} max={10} placeholder="Hours..." />
 						)}
 					</Form.Item>
+
 
 					<Form.Item style={{ margin: "0 20px" }}>
 						{getFieldDecorator("status", {

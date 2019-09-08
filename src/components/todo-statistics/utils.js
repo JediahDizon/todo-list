@@ -5,14 +5,20 @@ import { TodoFactory } from "app/services";
 
 export default {
 	getCountByStatusTypes(items) {
-		return _.map(TodoFactory.statusTypes, type => _.size(_.filter(items, { status: type })));
+		const toReturn = {};
+		_.each(items, a => toReturn[a.status] = [...toReturn[a.status] || [], a]);
+		_.each(toReturn, (value, key) => toReturn[key] = _.size(value));
+		return toReturn;
 	},
 
-	// Get the remaining hours excluding completed tasks
 	getTotalHours(items) {
-		items = _.filter(items, a => a.status !== TodoFactory.statusTypes.COMPLETE);
-		let toReturn = 0;
-		_.each(items, item => toReturn += Moment.duration(Moment(item.estimate).diff(Moment())).asHours());
+		return _.chain(items).map("estimate").sum().value();
+	},
+
+	getHoursByStatusType(items) {
+		const toReturn = {};
+		_.each(items, a => toReturn[a.status] = [...toReturn[a.status] || [], a]);
+		_.each(toReturn, (value, key) => toReturn[key] = _.sum(_.map(value, "estimate")));
 		return toReturn;
 	}
 }

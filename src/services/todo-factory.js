@@ -14,7 +14,7 @@ const sampleData = [
 		name: "Test",
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 		status: statusTypes.PLANNED,
-		estimate: Moment().add(1, "days").format(),
+		estimate: _.random(1, 10),
 		timestamp: Moment().subtract(_.random(1, 50), "hours").format()
 	},
 	{
@@ -22,7 +22,7 @@ const sampleData = [
 		name: "Test 2",
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 		status: statusTypes.IN_PROGRESS,
-		estimate: Moment().add(1, "days").format(),
+		estimate: _.random(1, 10),
 		timestamp: Moment().subtract(_.random(1, 50), "hours").format()
 	},
 	{
@@ -30,7 +30,7 @@ const sampleData = [
 		name: "Test 3",
 		description: "Lorem ipsum dolor sit amet",
 		status: statusTypes.COMPLETE,
-		estimate: Moment().add(1, "days").format(),
+		estimate: _.random(1, 10),
 		timestamp: Moment().subtract(_.random(1, 50), "hours").format()
 	}
 ];
